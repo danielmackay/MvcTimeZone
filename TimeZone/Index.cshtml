@@ -1,0 +1,46 @@
+﻿@using System
+
+@functions
+{
+    public DateTime ToAusTime(DateTime dateTime)
+    {
+        var tz = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
+        return TimeZoneInfo.ConvertTimeFromUtc(dateTime, tz);
+    }
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>DateTime</td>
+            <td>@DateTime.Now</td>
+        </tr>
+        <tr>
+            <td>Local DateTime</td>
+            <td>@DateTime.Now.ToLocalTime()</td>
+        </tr>
+        <tr>
+            <td>UTC DateTime</td>
+            <td>@DateTime.UtcNow</td>
+        </tr>
+        <tr>
+            <td>UTC Local DateTime</td>
+            <td>@DateTime.UtcNow.ToLocalTime()</td>
+        </tr>
+        <tr>
+            <td>Australian Eastern Time</td>
+            <td>
+                @ToAusTime(DateTime.UtcNow)
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
